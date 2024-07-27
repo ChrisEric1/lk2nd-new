@@ -1,0 +1,35 @@
+// SPDX-License-Identifier: GPL-2.0-only
+
+#include <skeleton32.dtsi>
+#include <lk2nd.dtsi>
+
+/ {
+	qcom,msm-id = <QCOM_ID_APQ8009W 0>, <QCOM_ID_APQ8009 0>;
+	qcom,board-id = <QCOM_BOARD_ID_MTP 0x105>;
+};
+
+&lk2nd {
+	mobvoi-catfish {
+		model = "Mobvoi TicWatch Pro";
+		compatible = "mobvoi,catfish";
+
+		lk2nd,dtb-files = "mobvoi-catfish";
+		lk2nd,match-panel;
+
+		panel {
+			compatible = "mobvoi,catfish-panel";
+
+			qcom,mdss_dsi_rm67162_wqvga_cmd {
+				compatible = "mobvoi,rm67162";
+			};
+		};
+
+		gpio-keys {
+			compatible = "gpio-keys";
+			volume-down {
+				lk2nd,code = <KEY_VOLUMEDOWN>;
+				gpios = <&tlmm 98 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
+			};
+		};
+	};
+};
